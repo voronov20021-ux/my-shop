@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Shopper Market</title>
+    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        h1 { color: #2480b9; margin-bottom: 10px; }
+        p { color: #aaaaaa; font-size: 16px; margin-bottom: 30px; }
+        .btn-order {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2480b9, #3498db);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(36, 128, 185, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn-order:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+    <h1>AI SHOPPER</h1>
+    <p>Твой тестовый магазин одежды готов к запуску!</p>
+    
+    <button class="btn-order" onclick="makeTestOrder()">🛒 Купить Худи и Кепку за 5000₽</button>
+
+    <script>
+        // Инициализируем Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Автоматически раскрываем магазин на весь экран телефона
+
+        function makeTestOrder() {
+            // Собираем данные о заказе, которые улетят Каю
+            const orderData = {
+                items_text: "Худи 'Over' Black (Размер M), Кепка 'Cyber' (Oversize)",
+                total_price: 5000
+            };
+
+            // Превращаем данные в строку JSON и отправляем в бот
+            tg.sendData(JSON.stringify(orderData));
+            
+            // Закрываем окно WebApp после отправки
+            tg.close();
+        }
+    </script>
+</body>
+</html>
